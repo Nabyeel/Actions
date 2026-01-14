@@ -1,0 +1,35 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Generate ASCII Artwork
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+ asciijobs:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Runs a single command using the runners shell
+      - name: Install cowsay program
+        run: sudo apt-get install cowsay -y
+        
+      - name: Execute Cowsay cmd
+        run: cowsay -f dragon "Run for cover, I am a dragon...RAWR" >> dragon.txt
+
+      - name: Text file exist
+        run: grep -i "dragon" dragon.txt
+
+      - name: Read File
+        run: cat dragon.txt
+
+      - name: checkout Repo Files
+        run: ls -ltra
