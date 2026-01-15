@@ -22,7 +22,9 @@ jobs:
         
       # Runs a single command using the runners shell
       - name: Executing shell script
-        run: ./ascii-script.sh
+        run: |
+              chmod +x ascii-script.sh
+              ./ascii-script.sh
         
      
 
